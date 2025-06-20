@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Söz Sayacı</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🗣️ Söz Sayacı</h1>
+            <p>Aleyna ve Kaan'ın sözlerini sayın!</p>
+        </header>
+
+        <main>
+            <!-- Kişi Bölümleri -->
+            <div class="people-sections">
+                <!-- Aleyna Bölümü -->
+                <section class="person-section aleyna-section">
+                    <div class="person-header">
+                        <h2>👩‍🦰 Aleyna</h2>
+                        <div class="person-stats">
+                            <span class="total-count">Toplam: <strong id="aleynaTotal">0</strong></span>
+                        </div>
+                    </div>
+                    <div class="words-list" id="aleynaWordsList">
+                        <!-- Sözler buraya dinamik olarak eklenecek -->
+                    </div>
+                </section>
+
+                <!-- Kaan Bölümü -->
+                <section class="person-section kaan-section">
+                    <div class="person-header">
+                        <h2>👨‍🦱 Kaan</h2>
+                        <div class="person-stats">
+                            <span class="total-count">Toplam: <strong id="kaanTotal">0</strong></span>
+                        </div>
+                    </div>
+                    <div class="words-list" id="kaanWordsList">
+                        <!-- Sözler buraya dinamik olarak eklenecek -->
+                    </div>
+                </section>
+            </div>
+
+            <!-- Ekleme Formu -->
+            <section class="add-word-section">
+                <h2>➕ Yeni Söz Ekle</h2>
+                <form id="addWordForm" class="word-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="word">Söz:</label>
+                            <input type="text" id="word" name="word" placeholder="Örn: Kahve, Yemek..." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="person">Kişi:</label>
+                            <select id="person" name="person" required>
+                                <option value="">Seçiniz...</option>
+                                <option value="aleyna">👩‍🦰 Aleyna</option>
+                                <option value="kaan">👨‍🦱 Kaan</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="count">Sayı:</label>
+                            <input type="number" id="count" name="count" min="1" value="1" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">➕ Ekle</button>
+                </form>
+            </section>
+
+            <!-- Genel İstatistikler -->
+            <section class="stats-section">
+                <h2>📊 Genel İstatistikler</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>🏆 En Çok Kullanılan</h3>
+                        <div id="mostUsedWord" class="stat-value">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>📈 Toplam Söz</h3>
+                        <div id="totalWords" class="stat-value">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>🎯 Lider</h3>
+                        <div id="leader" class="stat-value">-</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Loading Spinner -->
+        <div id="loadingSpinner" class="loading-spinner hidden">
+            <div class="spinner"></div>
+            <p>Yükleniyor...</p>
+        </div>
+
+        <!-- Notification -->
+        <div id="notification" class="notification hidden"></div>
+    </div>
+
+    <!-- Supabase Kütüphanesi -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
