@@ -156,11 +156,6 @@ main {
     background: linear-gradient(135deg, #f0fffe 0%, #f8fafc 100%);
 }
 
-.word-item:hover {
-    transform: translateX(5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
 .word-info {
     display: flex;
     flex-direction: column;
@@ -210,7 +205,7 @@ main {
 
 .form-row {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr;
     gap: 20px;
     align-items: end;
 }

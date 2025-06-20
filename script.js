@@ -4,7 +4,7 @@
 // 1. https://supabase.com adresinden bir hesap oluşturun ve yeni bir proje başlatın.
 // 2. Projenizin Ayarlar > API bölümünden URL ve anon key bilgilerinizi alın.
 // 3. Aşağıdaki değişkenlere kendi bilgilerinizi girin.
-const SUPABASE_URL = 'https://iaoveosgqlcswcoqqbqu.supabase.co'; // URL düzeltildi
+const SUPABASE_URL = 'https://iaoveosgqlcswcogqbqu.supabase.co'; // Burayı kendi Supabase URL'niz ile değiştirin
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlhb3Zlb3NncWxjc3djb2dxYnF1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA0MzQ1NzIsImV4cCI6MjA2NjAxMDU3Mn0.ZIyxZEucdXyMe4IdimazSt_gN6u4IwzFtoGWIib_JX8'; // Burayı kendi anon anahtarınız ile değiştirin
 
 // Supabase istemcisini oluştur
@@ -49,21 +49,15 @@ addWordForm.addEventListener('submit', async (e) => {
     const formData = new FormData(addWordForm);
     const word = formData.get('word').trim().toLowerCase();
     const person = formData.get('person');
-    const count = parseInt(formData.get('count'));
 
-    if (!word || !person || count < 1) {
-        showNotification('Lütfen tüm alanları doğru şekilde doldurun!', 'error');
+    if (!word || !person) {
+        showNotification('Lütfen tüm alanları doldurun!', 'error');
         return;
     }
 
     showLoading(true);
     try {
-        const recordsToInsert = [];
-        for (let i = 0; i < count; i++) {
-            recordsToInsert.push({ kisi: person, soztipi: word });
-        }
-
-        const { error } = await db.from('verilmissozler').insert(recordsToInsert);
+        const { error } = await db.from('verilmissozler').insert({ kisi: person, soztipi: word });
 
         if (error) {
             console.error('Supabase Hata Detayı:', error);
